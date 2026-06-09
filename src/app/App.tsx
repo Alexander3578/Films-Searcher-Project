@@ -16,7 +16,6 @@ export const App = () => {
                 <div>
                     <CssBaseline/>
                     <Header/>
-                    dddd
                 </div>
             </BrowserRouter>
         </ThemeProvider>

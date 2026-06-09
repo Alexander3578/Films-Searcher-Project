@@ -5,9 +5,6 @@ export const getTheme = (themeMode: ThemeMode) => {
   return createTheme({
     palette: {
       mode: themeMode,
-      primary: {
-        main: "#8d44c9",
-      },
     },
   })
 }
