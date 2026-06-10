@@ -1,9 +1,9 @@
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
-import './styles/index.scss'
+import '../styles/index.scss'
 import {Provider} from 'react-redux';
-import {store} from './app/store';
-import {App} from './app/App';
+import {store} from './store';
+import {App} from './App';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>

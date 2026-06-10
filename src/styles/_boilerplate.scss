@@ -10,6 +10,12 @@ html {
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition:
+          background-color .3s ease,
+          color .3s ease,
+          border-color .3s ease;
 }
 
 input,
@@ -30,8 +36,6 @@ a:visited {
 }
 
 body {
-  margin: 0;
-  padding: 0;
   min-width: 320px;
   min-height: 100vh;
 
@@ -40,6 +44,10 @@ body {
   color: var(--color-dark-900);
 
   background-color: var(--color-light-100);
+}
+
+main {
+  padding-top: 174px;
 }
 
 
