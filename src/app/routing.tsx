@@ -1,11 +1,12 @@
 import {createBrowserRouter, Outlet, RouteObject, RouterProvider,} from 'react-router'
 import {Layout} from '../common/layout/Layout';
 import {Error404} from '../common/error/Error404';
+import {MainPage} from '../features/main/movie/ui/mainPage';
 
 
 const publicRoutes: RouteObject[] = [
     {
-        element: <div>Main</div>,
+        element: <MainPage />,
         path: '/',
     },
     {
