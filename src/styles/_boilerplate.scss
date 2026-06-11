@@ -1,3 +1,17 @@
+:root {
+  --bg: var(--color-light-100);
+  --text: var(--color-dark-900);
+  --headerBg: var(--color-light-500);
+  --headerText: var(--color-dark-300);
+}
+
+[data-theme='dark'] {
+  --bg: var(--color-dark-900);
+  --text: var(--color-light-100);
+  --headerBg: var(--color-dark-700);
+  --headerText: var(--color-dark-100);
+}
+
 html {
   box-sizing: border-box;
   font-size: 100%;
