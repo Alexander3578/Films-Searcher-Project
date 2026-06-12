@@ -3,11 +3,12 @@
     top: 0;
     right: 0;
     left: 0;
-    padding: 40px 0;
+    z-index: 999;
+    padding: 25px 0;
     background-color: var(--headerBg);
     border-radius: 5px;
 }
 
 .logo {
-    width: 200px;
+    width: 150px;
 }

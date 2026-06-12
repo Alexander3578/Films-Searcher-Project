@@ -1,4 +1,4 @@
-import iconSprite from '../../../assets/IconSprite.svg'
+import iconSprite from '@/assets/IconSprite.svg'
 
 interface IconPropsType {
     height?: string

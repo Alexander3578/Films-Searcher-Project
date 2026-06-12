@@ -1,7 +1,7 @@
 import {createBrowserRouter, Outlet, RouteObject, RouterProvider,} from 'react-router'
 import {Layout} from '../common/layout/Layout';
 import {Error404} from '../common/error/Error404';
-import {MainPage} from '../features/main/movie/ui/mainPage';
+import {MainPage} from '../features/main/movie/ui/MainPage';
 
 
 const publicRoutes: RouteObject[] = [
