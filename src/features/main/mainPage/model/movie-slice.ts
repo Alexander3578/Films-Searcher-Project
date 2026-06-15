@@ -1,15 +1,15 @@
 import {createAppSlice} from '@/common/utils/createAppSlice';
-import {GetPopularMovieParams, GetPopularMovieTypes} from '../api/movieApi.types';
+import {GetPopularMovieParams, MovieType} from '../api/movieApi.types';
 import {movieApi} from '../api/movieApi';
 import {setAppStatusAC} from '@/app/app-slice';
 
 type MovieState = {
-    popular: GetPopularMovieTypes | null
+    popular: MovieType | null,
 }
 export const movieSlice = createAppSlice({
     name: 'movie',
     initialState: {
-        popular: null
+        popular: null,
     } as MovieState,
     reducers: (create) => ({
         fetchPopularMovieTC: create.asyncThunk(
@@ -33,7 +33,7 @@ export const movieSlice = createAppSlice({
                     state.popular = action.payload.popular
                 },
             },
-        )
+        ),
     }),
     selectors: {
         popularMovieSelector: (state) => state.popular

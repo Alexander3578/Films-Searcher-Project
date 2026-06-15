@@ -1,13 +1,14 @@
 import {createBrowserRouter, Outlet, RouteObject, RouterProvider,} from 'react-router'
 import {Layout} from '../common/layout/Layout';
 import {Error404} from '../common/error/Error404';
-import {MainPage} from '../features/main/movie/ui/MainPage';
+import {MainPage} from '../features/main/mainPage/ui/MainPage';
+import {SearchPage} from '../features/main/searchPage/ui/SearchPage';
 
 
 const publicRoutes: RouteObject[] = [
     {
         element: <MainPage />,
-        path: '/',
+        path: '/main',
     },
     {
         element: <div>Category Movies</div>,
@@ -18,7 +19,7 @@ const publicRoutes: RouteObject[] = [
         path: '/filter',
     },
     {
-        element: <div>Search</div>,
+        element: <SearchPage />,
         path: '/search',
     },
     {

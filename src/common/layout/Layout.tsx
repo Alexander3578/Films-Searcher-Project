@@ -1,9 +1,15 @@
-import {Outlet} from 'react-router'
+import {Outlet, useNavigate} from 'react-router'
 import {Header} from '@/features/header/Header';
-import React from 'react';
+import React, {useEffect} from 'react';
 
 
 export const Layout = () => {
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        navigate('/main')
+    }, [])
 
     return (
         <>

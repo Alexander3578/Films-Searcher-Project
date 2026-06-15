@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {fetchPopularMovieTC, popularMovieSelector} from '../model/movie-slice';
 import {useAppDispatch, useAppSelector} from '@/common/hooks';
-import {PopularMovieResults} from '../api/movieApi.types';
-import {SearchMovieBlock} from './searchMovieBlock/SearchMovieBlock';
+import {MovieResults} from '../api/movieApi.types';
+import {SearchMainBlock} from './searchMainBlock/SearchMainBlock';
+import styles from './MainPage.module.scss'
 
 export const MainPage = () => {
 
@@ -10,7 +11,7 @@ export const MainPage = () => {
     const popularMovie = useAppSelector(popularMovieSelector)
 
     const [heroMovie, setHeroMovie] =
-        useState<PopularMovieResults | null>(null)
+        useState<MovieResults | null>(null)
 
     useEffect(() => {
         if (popularMovie?.results.length) {
@@ -33,8 +34,14 @@ export const MainPage = () => {
 
     return (
         popularMovie ?
-            <section >
-                <SearchMovieBlock backdropURL={backgroundImage} />
+            <section>
+                <div className={styles.hero}
+                     style={{
+                         backgroundImage: `url(${backgroundImage})`,
+                     }}>
+                    <div className={styles.overlay}/>
+                    <SearchMainBlock backdropURL={backgroundImage}/>
+                </div>
             </section> :
             <div>Loading</div>
     );

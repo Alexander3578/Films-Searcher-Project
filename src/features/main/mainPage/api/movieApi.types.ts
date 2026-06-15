@@ -3,14 +3,14 @@ export type GetPopularMovieParams = {
 	language?: string
 }
 
-export type GetPopularMovieTypes = {
+export type MovieType = {
 	page: number;
-	results: PopularMovieResults[];
+	results: MovieResults[];
 	total_pages: number;
 	total_results: number;
 }
 
-export type PopularMovieResults = {
+export type MovieResults = {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
@@ -26,3 +26,4 @@ export type PopularMovieResults = {
 	vote_average: number;
 	vote_count: number;
 }
+
