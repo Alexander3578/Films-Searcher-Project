@@ -25,7 +25,7 @@ export const searchSlice = createAppSlice({
                     return {search: res.data}
                 } catch (err) {
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
-
+                    console.log(err)
                     return thunkAPI.rejectWithValue(err)
                 }
             },

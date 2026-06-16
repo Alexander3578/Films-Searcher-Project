@@ -7,7 +7,6 @@ import {SearchMovieBlock} from '../../../searchPage/ui/searchMovieBlock/SearchMo
 type Props = {
     backdropURL: string
 }
-
 export const SearchMainBlock = ({backdropURL}: Props) => {
 
     return (
