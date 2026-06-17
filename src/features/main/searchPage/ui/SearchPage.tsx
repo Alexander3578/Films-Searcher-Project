@@ -29,7 +29,7 @@ export const SearchPage = () => {
                 <MovieCard key={movie.id}
                            imgSrc={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                            title={movie.title}
-                           rating={movie.popularity} />
+                           rating={movie.vote_average} />
             )}
         </div>
     );

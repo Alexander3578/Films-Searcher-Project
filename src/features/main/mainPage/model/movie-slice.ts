@@ -22,15 +22,15 @@ export const movieSlice = createAppSlice({
         fetchPopularMovieTC: create.asyncThunk(
             async (params: GetMovieParams, thunkAPI) => {
                 try {
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'loading' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await movieApi.getPopularMovieList(params)
 
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'succeeded' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return { popular: res.data }
+                    return {popular: res.data}
                 } catch (err) {
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'failed' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
 
                     return thunkAPI.rejectWithValue(err)
                 }
@@ -44,15 +44,15 @@ export const movieSlice = createAppSlice({
         fetchTopRatedMovieTC: create.asyncThunk(
             async (params: GetMovieParams, thunkAPI) => {
                 try {
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'loading' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await movieApi.getTopRatedMovieList(params)
 
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'succeeded' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return { topRated: res.data }
+                    return {topRated: res.data}
                 } catch (err) {
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'failed' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
 
                     return thunkAPI.rejectWithValue(err)
                 }
@@ -66,15 +66,15 @@ export const movieSlice = createAppSlice({
         fetchNowPlayingMovieTC: create.asyncThunk(
             async (params: GetMovieParams, thunkAPI) => {
                 try {
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'loading' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await movieApi.getNowPlayingMovieList(params)
 
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'succeeded' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return { nowPlaying: res.data }
+                    return {nowPlaying: res.data}
                 } catch (err) {
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'failed' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
 
                     return thunkAPI.rejectWithValue(err)
                 }
@@ -88,15 +88,15 @@ export const movieSlice = createAppSlice({
         fetchUpcomingMovieTC: create.asyncThunk(
             async (params: GetMovieParams, thunkAPI) => {
                 try {
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'loading' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await movieApi.getUpcomingMovieList(params)
 
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'succeeded' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return { upcoming: res.data }
+                    return {upcoming: res.data}
                 } catch (err) {
-                    thunkAPI.dispatch(setAppStatusAC({ status: 'failed' }))
+                    thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
 
                     return thunkAPI.rejectWithValue(err)
                 }
@@ -109,12 +109,26 @@ export const movieSlice = createAppSlice({
         ),
     }),
     selectors: {
-        popularMovieSelector: (state) => state.popular
+        popularMovieSelector: (state) => state.popular,
+        upcomingMovieSelector: (state) => state.upcoming,
+        nowPlayingMovieSelector: (state) => state.nowPlaying,
+        topRatedMovieSelector: (state) => state.topRated,
+
     }
 })
 
-export const {fetchPopularMovieTC} = movieSlice.actions
+export const {
+    fetchPopularMovieTC,
+    fetchUpcomingMovieTC,
+    fetchNowPlayingMovieTC,
+    fetchTopRatedMovieTC
+} = movieSlice.actions
 
 export const movieReducer = movieSlice.reducer
 
-export const {popularMovieSelector} = movieSlice.selectors
+export const {
+    popularMovieSelector,
+    nowPlayingMovieSelector,
+    topRatedMovieSelector,
+    upcomingMovieSelector
+} = movieSlice.selectors

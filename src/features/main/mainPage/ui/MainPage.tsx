@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {fetchPopularMovieTC, popularMovieSelector} from '../model/movie-slice';
+import {
+    fetchNowPlayingMovieTC,
+    fetchPopularMovieTC,
+    fetchTopRatedMovieTC, fetchUpcomingMovieTC, nowPlayingMovieSelector,
+    popularMovieSelector, topRatedMovieSelector, upcomingMovieSelector
+} from '../model/movie-slice';
 import {useAppDispatch, useAppSelector} from '@/common/hooks';
 import {MovieResults} from '../api/movieApi.types';
 import {SearchMainBlock} from './searchMainBlock/SearchMainBlock';
@@ -9,6 +14,9 @@ export const MainPage = () => {
 
     const dispatch = useAppDispatch()
     const popularMovie = useAppSelector(popularMovieSelector)
+    const upcomingMovie = useAppSelector(upcomingMovieSelector)
+    const topRatedMovie = useAppSelector(topRatedMovieSelector)
+    const nowPlayingMovie = useAppSelector(nowPlayingMovieSelector)
 
     const [heroMovie, setHeroMovie] =
         useState<MovieResults | null>(null)
@@ -26,6 +34,9 @@ export const MainPage = () => {
 
     useEffect(() => {
         dispatch(fetchPopularMovieTC({}))
+        dispatch(fetchTopRatedMovieTC({}))
+        dispatch(fetchNowPlayingMovieTC({}))
+        dispatch(fetchUpcomingMovieTC({}))
     }, [])
 
     const backgroundImage = heroMovie
@@ -33,17 +44,15 @@ export const MainPage = () => {
         : ''
 
     return (
-        popularMovie ?
-            <section>
-                <div className={styles.hero}
-                     style={{
-                         backgroundImage: `url(${backgroundImage})`,
-                     }}>
-                    <div className={styles.overlay}/>
-                    <SearchMainBlock backdropURL={backgroundImage}/>
-                </div>
-            </section> :
-            <div>Loading</div>
-    );
+        <section>
+            <div className={styles.hero}
+                 style={{
+                     backgroundImage: `url(${backgroundImage})`,
+                 }}>
+                <div className={styles.overlay}/>
+                <SearchMainBlock backdropURL={backgroundImage}/>
+            </div>
+        </section>
+    )
 };
 

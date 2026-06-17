@@ -10,16 +10,32 @@ type Props = {
 
 export const MovieCard = ({rating, imgSrc, title}: Props) => {
 
-    const imageUrl = imgSrc
-        ? imgSrc
-        : undefined;
+    const hasImage = imgSrc && !imgSrc.endsWith('null');
+
+    const ratingStyle =
+        rating > 7
+            ? {
+                background: '#22c55e',
+                color: '#fff',
+            }
+            : rating >= 4
+                ? {
+                    background: '#facc15',
+                    color: '#000',
+                }
+                : {
+                    background: '#ef4444',
+                    color: '#fff',
+                };
 
     return (
         <div>
-            <div className={styles.movieCard} style={imageUrl ? {
-                backgroundImage: `url(${imageUrl})`
-            } : {background: `#000`}}>
-                <div>{rating}</div>
+            <div className={styles.movieCard} style={hasImage ? {
+                backgroundImage: `url(${imgSrc})`
+            } : {background: `#3d3c3c`}}>
+                <div className={styles.rating} style={ratingStyle}>
+                    {rating.toFixed()}
+                </div>
             </div>
             <Typography>{title}</Typography>
         </div>
