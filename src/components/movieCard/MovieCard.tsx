@@ -30,14 +30,14 @@ export const MovieCard = ({rating, imgSrc, title}: Props) => {
 
     return (
         <div>
-            <div className={styles.movieCard} style={hasImage ? {
+            <div className={styles.movieImg} style={hasImage ? {
                 backgroundImage: `url(${imgSrc})`
             } : {background: `#3d3c3c`}}>
                 <div className={styles.rating} style={ratingStyle}>
                     {rating.toFixed()}
                 </div>
             </div>
-            <Typography>{title}</Typography>
+            <span>{title}</span>
         </div>
     );
 };
