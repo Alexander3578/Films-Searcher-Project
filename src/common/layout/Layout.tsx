@@ -1,6 +1,7 @@
 import {Outlet, useNavigate} from 'react-router'
 import {Header} from '@/features/header/Header';
 import React, {useEffect} from 'react';
+import {Footer} from '../../features/footer/Footer';
 
 
 export const Layout = () => {
@@ -17,6 +18,7 @@ export const Layout = () => {
             <main>
                 <Outlet/>
             </main>
+            <Footer />
         </>
     )
 }

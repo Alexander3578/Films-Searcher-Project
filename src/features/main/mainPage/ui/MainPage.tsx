@@ -56,7 +56,8 @@ export const MainPage = () => {
                      backgroundImage: `url(${backgroundImage})`,
                  }}>
                 <div className={styles.overlay}/>
-                <SearchMainBlock backdropURL={backgroundImage}/>
+
+                <SearchMainBlock/>
             </div>
             <Container>
                 <FlexWrapper direction={'column'} justify={'space-between'} align={'center'} gap={'30px'}>

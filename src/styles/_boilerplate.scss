@@ -3,6 +3,7 @@
   --text: var(--color-dark-900);
   --headerBg: var(--color-light-500);
   --headerText: var(--color-dark-300);
+  --footerBorder: var(--color-light-700)
 }
 
 [data-theme='dark'] {
@@ -10,6 +11,7 @@
   --text: var(--color-light-100);
   --headerBg: var(--color-dark-700);
   --headerText: var(--color-dark-100);
+  --footerBorder: var(--color-dark-300)
 }
 
 html {
@@ -30,6 +32,17 @@ html {
           background-color .3s ease,
           color .3s ease,
           border-color .3s ease;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
 }
 
 input,
@@ -62,6 +75,7 @@ body {
 
 main {
   padding-top: 116px;
+  flex: 1
 }
 
 

@@ -18,15 +18,21 @@ type Props = {
 export const MovieCategoryLine = ({title, movies, category}: Props) => {
 
     const navigate = useNavigate()
+
+    const viewAllMovieHandler = () => {
+        navigate(`/category/${category}`)
+    }
+
     return (
         <div>
-            <FlexWrapper justify={'space-between'}>
+            <FlexWrapper justify={'space-between'} align={'center'} className={styles.titleViewAllLine}>
                 <Typography className={styles.categoryTitle}
                             variant={'h1'}>
                     {title}
                 </Typography>
                 <Button variant={'secondary'}
-                        size={'md'}>
+                        size={'md'}
+                        onClick={viewAllMovieHandler}>
                     View more
                 </Button>
             </FlexWrapper>

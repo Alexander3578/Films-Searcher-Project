@@ -3,6 +3,7 @@ import {Layout} from '../common/layout/Layout';
 import {Error404} from '../common/error/Error404';
 import {MainPage} from '../features/main/mainPage/ui/MainPage';
 import {SearchPage} from '../features/main/searchPage/ui/SearchPage';
+import {CategoryPage} from '../features/main/categoryPage/ui/CategoryPage';
 
 
 const publicRoutes: RouteObject[] = [
@@ -11,8 +12,8 @@ const publicRoutes: RouteObject[] = [
         path: '/main',
     },
     {
-        element: <div>Category Movies</div>,
-        path: '/category',
+        element: <CategoryPage />,
+        path: '/category/:type',
     },
     {
         element: <div>Filtered Movies</div>,

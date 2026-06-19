@@ -1,0 +1,11 @@
+.footer {
+  min-height: 15vh;
+  border-top: 1px solid var(--footerBorder);
+  margin-top: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}

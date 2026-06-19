@@ -5,6 +5,9 @@ import {useAppSelector} from '@/common/hooks';
 import {getSearchMovieTC, searchMovieSelector} from '../model/search-slice';
 import {SearchMovieBlock} from './searchMovieBlock/SearchMovieBlock';
 import {MovieCard} from '@/components/movieCard';
+import {Typography} from '@/components/typography';
+import styles from './SearchPage.module.scss'
+import {Container} from '@/components/stylesComponents/container/Container';
 
 export const SearchPage = () => {
     const [params] = useSearchParams();
@@ -23,15 +26,19 @@ export const SearchPage = () => {
 
 
     return (
-        <div>
-            <SearchMovieBlock />
+        <Container>
+            <Typography variant={'h1'}
+                        className={styles.searchPageTitle}>
+                The Search Result
+            </Typography>
+            <SearchMovieBlock/>
             {searchMovieResult?.results?.map(movie =>
                 <MovieCard key={movie.id}
                            imgSrc={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                            title={movie.title}
-                           rating={movie.vote_average} />
+                           rating={movie.vote_average}/>
             )}
-        </div>
+        </Container>
     );
 };
 
