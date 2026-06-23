@@ -2,6 +2,8 @@ import {createAppSlice} from '@/common/utils/createAppSlice';
 import {GetMovieParams, MovieType, MovieTypeWithDates} from '../api/movieApi.types';
 import {movieApi} from '../api/movieApi';
 import {setAppStatusAC} from '@/app/app-slice';
+import {MovieCategory} from '@/common/enums/enums';
+import {RootState} from '@/app/store';
 
 type MovieState = {
     popular: MovieType | null,
@@ -132,3 +134,25 @@ export const {
     topRatedMovieSelector,
     upcomingMovieSelector
 } = movieSlice.selectors
+
+export const selectMoviesByCategory = (
+    state: RootState,
+    category: MovieCategory
+) => {
+    switch (category) {
+        case MovieCategory.POPULAR:
+            return state.movie.popular;
+
+        case MovieCategory.TOP_RATED:
+            return state.movie.topRated;
+
+        case MovieCategory.NOW_PLAYING:
+            return state.movie.nowPlaying;
+
+        case MovieCategory.UPCOMING:
+            return state.movie.upcoming;
+
+        default:
+            return null;
+    }
+};
