@@ -7,6 +7,7 @@ type Props = React.ComponentProps<'div'> & {
     align?: React.CSSProperties['alignItems']
     direction?: React.CSSProperties['flexDirection']
     gap?: string
+    wrap?: React.CSSProperties['flexWrap']
 }
 
 export const FlexWrapper = ({
@@ -16,6 +17,7 @@ export const FlexWrapper = ({
                                 align = 'stretch',
                                 direction = 'row',
                                 gap = '0',
+                                wrap = 'nowrap',
                                 ...rest
                             }: Props) => {
     return (
@@ -24,6 +26,7 @@ export const FlexWrapper = ({
             justifyContent: justify,
             alignItems: align,
             flexDirection: direction,
+            flexWrap: wrap,
             gap,
         }} {...rest} className={className}>
             {children}

@@ -2,7 +2,6 @@
   all: unset;
   cursor: pointer;
   box-sizing: border-box;
-  color: var(--text);
   font-family: var(--font-family-primary);
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-bold);
@@ -38,6 +37,8 @@
 .primary {
   background-color: var(--color-info-500);
   transition: .3s ease;
+  color: var(--bg);
+
   &:hover {
     background-color: var(--color-info-300);
   }
@@ -55,6 +56,8 @@
 
 .secondary {
   background-color: transparent;
+  transition: .3s ease;
+  color: var(--text);
 
   &:hover {
     background-color: var(--color-light-700);

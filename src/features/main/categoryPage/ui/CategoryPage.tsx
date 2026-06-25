@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import {useNavigate, useParams} from 'react-router';
-import {Button} from '@/components/button';
+import {NavLink, useNavigate, useParams} from 'react-router';
 import {MovieCategory} from '@/common/enums/enums';
 import {useAppDispatch, useAppSelector} from '@/common/hooks';
+import styles from './CategoryPage.module.scss'
 
 import {
     fetchNowPlayingMovieTC,
@@ -11,30 +11,33 @@ import {
     fetchUpcomingMovieTC,
     selectMoviesByCategory,
 } from '../../mainPage/model/movie-slice';
-
-import {MOVIE_CATEGORY} from '../../../../common/constants';
 import {MovieCard} from '@/components/movieCard';
+import {FlexWrapper} from '@/components/stylesComponents/flexWrapper/FlexWrapper';
+import {Container} from '@/components/stylesComponents/container/Container';
+import {Typography} from '@/components/typography';
+import {formatCategory} from '@/common/functions/formatCategory/formatCategory';
+import {MOVIE_CATEGORY} from '@/common/constants';
+import {v4} from 'uuid';
+import clsx from 'clsx';
+
+const categories = [
+    { id: v4(), label: 'Popular Movies', value: MovieCategory.POPULAR },
+    { id: v4(), label: 'Top Rated Movies', value: MovieCategory.TOP_RATED },
+    { id: v4(), label: 'Now Playing Movies', value: MovieCategory.NOW_PLAYING },
+    { id: v4(), label: 'Upcoming Movies', value: MovieCategory.UPCOMING },
+];
 
 export const CategoryPage = () => {
     const {type} = useParams();
-    const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const category = type as MovieCategory | undefined;
 
-    // 1. REDIRECT если нет категории
-    useEffect(() => {
-        if (category) return;
-
-        const saved = localStorage.getItem(MOVIE_CATEGORY) as MovieCategory | null;
-        const defaultCategory = saved ?? MovieCategory.POPULAR;
-
-        navigate(`/category/${defaultCategory}`, {replace: true});
-    }, [category, navigate]);
-
-    // 2. FETCH данных
     useEffect(() => {
         if (!category) return;
+
+        localStorage.setItem(MOVIE_CATEGORY, category);
 
         switch (category) {
             case MovieCategory.POPULAR:
@@ -55,58 +58,50 @@ export const CategoryPage = () => {
         }
     }, [category, dispatch]);
 
-    // 3. DATA из Redux
     const movies = useAppSelector(state =>
         category ? selectMoviesByCategory(state, category) : null
     );
 
-    // 4. смена категории
-    const changeCategory = (cat: MovieCategory) => {
-        localStorage.setItem(MOVIE_CATEGORY, cat);
-        navigate(`/category/${cat}`);
-    };
-
-    return (
-        <>
-            {/* NAVIGATION */}
-            <div style={{display: 'flex', gap: 10, marginBottom: 20}}>
-                <Button onClick={() => changeCategory(MovieCategory.POPULAR)}>
-                    Popular
-                </Button>
-
-                <Button onClick={() => changeCategory(MovieCategory.TOP_RATED)}>
-                    Top Rated
-                </Button>
-
-                <Button onClick={() => changeCategory(MovieCategory.NOW_PLAYING)}>
-                    Now Playing
-                </Button>
-
-                <Button onClick={() => changeCategory(MovieCategory.UPCOMING)}>
-                    Upcoming
-                </Button>
-            </div>
-
-            {/* CURRENT CATEGORY */}
-            <div>
-                Текущая категория: {category}
-            </div>
-
-            {/* MOVIES LIST */}
-            <div style={{display: 'flex', gap: 20, flexWrap: 'wrap', marginTop: 20}}>
-                {movies?.results?.map(movie => (
-                    <MovieCard
-                        key={movie.id}
-                        imgSrc={
-                            movie.backdrop_path
-                                ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-                                : ''
+    return  category ? (
+        <section className={styles.categorySection}>
+            <FlexWrapper justify={'center'}
+                         gap={'30px'}
+                         className={styles.categoryButtonsWrapper}>
+                {categories.map(cat => (
+                    <NavLink
+                        key={cat.id}
+                        to={`/category/${cat.value}`}
+                        className={({ isActive }) =>
+                            clsx(
+                                styles.link,
+                                isActive ?  styles.categoryActiveLink : styles.normalLink
+                            )
                         }
-                        title={movie.title}
-                        rating={movie.vote_average}
-                    />
+                    >
+                        {cat.label}
+                    </NavLink>
                 ))}
-            </div>
-        </>
-    );
+            </FlexWrapper>
+            <Container>
+                <Typography className={styles.categoryTitle}
+                            variant={'h1'}>
+                    {formatCategory(category)} Movies
+                </Typography>
+                <FlexWrapper justify={'space-between'} wrap={'wrap'} gap={'20px'}>
+                    {movies?.results?.map(movie => (
+                        <MovieCard
+                            key={movie.id}
+                            imgSrc={
+                                movie.backdrop_path
+                                    ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+                                    : ''
+                            }
+                            title={movie.title}
+                            rating={movie.vote_average}
+                        />
+                    ))}
+                </FlexWrapper>
+            </Container>
+        </section>
+    ) : <div>Loading...</div>;
 };

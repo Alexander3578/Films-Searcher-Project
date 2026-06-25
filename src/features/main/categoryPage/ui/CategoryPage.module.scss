@@ -1,0 +1,47 @@
+.categorySection {
+  width: 100vw;
+}
+
+.categoryButtonsWrapper {
+  margin-top: 40px;
+}
+
+.categoryTitle {
+  display: inline-block;
+  color: var(--text);
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 20px;
+  vertical-align: middle;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.normalLink {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--color-dark-100);
+
+  &:hover {
+    background: var(--color-light-900);
+  }
+}
+
+.categoryActiveLink {
+  background: var(--color-info-500);
+  color: var(--bg);
+  border: 1px solid var(--color-info-500);
+
+  &:hover {
+    background: var(--color-info-700);
+  }
+}
+
