@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {NavLink, useNavigate, useParams} from 'react-router';
+import {NavLink, useParams, useSearchParams} from 'react-router';
 import {MovieCategory} from '@/common/enums/enums';
 import {useAppDispatch, useAppSelector} from '@/common/hooks';
 import styles from './CategoryPage.module.scss'
@@ -19,6 +19,7 @@ import {formatCategory} from '@/common/functions/formatCategory/formatCategory';
 import {MOVIE_CATEGORY} from '@/common/constants';
 import {v4} from 'uuid';
 import clsx from 'clsx';
+import {Pagination} from '@/components/pagination';
 
 const categories = [
     { id: v4(), label: 'Popular Movies', value: MovieCategory.POPULAR },
@@ -30,9 +31,13 @@ const categories = [
 export const CategoryPage = () => {
     const {type} = useParams();
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const category = type as MovieCategory | undefined;
+
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const page = Number(searchParams.get('page') ?? 1);
 
     useEffect(() => {
         if (!category) return;
@@ -41,28 +46,32 @@ export const CategoryPage = () => {
 
         switch (category) {
             case MovieCategory.POPULAR:
-                dispatch(fetchPopularMovieTC({page: 1}));
+                dispatch(fetchPopularMovieTC({page}));
                 break;
 
             case MovieCategory.TOP_RATED:
-                dispatch(fetchTopRatedMovieTC({page: 1}));
+                dispatch(fetchTopRatedMovieTC({page}));
                 break;
 
             case MovieCategory.NOW_PLAYING:
-                dispatch(fetchNowPlayingMovieTC({page: 1}));
+                dispatch(fetchNowPlayingMovieTC({page}));
                 break;
 
             case MovieCategory.UPCOMING:
-                dispatch(fetchUpcomingMovieTC({page: 1}));
+                dispatch(fetchUpcomingMovieTC({page}));
                 break;
         }
-    }, [category, dispatch]);
+    }, [category, page, dispatch]);
 
     const movies = useAppSelector(state =>
         category ? selectMoviesByCategory(state, category) : null
     );
 
-    return  category ? (
+    const onChangePageHandler = (newPage: number) => {
+        setSearchParams({ page: String(newPage) });
+    }
+
+    return  category && movies ? (
         <section className={styles.categorySection}>
             <FlexWrapper justify={'center'}
                          gap={'30px'}
@@ -87,7 +96,7 @@ export const CategoryPage = () => {
                             variant={'h1'}>
                     {formatCategory(category)} Movies
                 </Typography>
-                <FlexWrapper justify={'space-between'} wrap={'wrap'} gap={'20px'}>
+                <FlexWrapper wrap={'wrap'} gap={'24px'}>
                     {movies?.results?.map(movie => (
                         <MovieCard
                             key={movie.id}
@@ -102,6 +111,9 @@ export const CategoryPage = () => {
                     ))}
                 </FlexWrapper>
             </Container>
+            <Pagination count={movies.total_pages}
+                        onChange={onChangePageHandler}
+                        page={page} />
         </section>
     ) : <div>Loading...</div>;
 };

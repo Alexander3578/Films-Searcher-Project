@@ -1,0 +1,71 @@
+.root {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.container {
+  display: flex;
+  gap: 12px;
+  list-style-type: none;
+}
+
+@mixin item {
+  all: unset;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  font-weight: 700;
+  font-size: 20px;
+
+  color: var(--text);
+
+  border-radius: 12px;
+}
+
+.item {
+  @include item;
+
+  cursor: pointer;
+
+  &:focus-visible {
+    box-sizing: border-box;
+    border: 2px solid var(--color-info-900);
+  }
+
+  &:disabled {
+    cursor: initial;
+    opacity: 1;
+
+    & svg {
+      opacity: 0.5;
+    }
+  }
+
+  &:hover:not(&:disabled) {
+    background-color: var(--color-light-900);
+  }
+
+  &.selected {
+    color: var(--color-light-100);
+    background-color: var(--color-info-500);  }
+}
+
+.dots {
+  @include item;
+}
+
+.icon {
+  .item:disabled & {
+    // important because icons have style prop
+    color: red !important;
+  }
+}
+
