@@ -1,6 +1,18 @@
 .movieCard {
   max-width: 210px;
   width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover .movieImg {
+    transform: scale(1.05);
+  }
+
+  &:hover .overlay {
+    opacity: 1;
+  }
 }
 
 .movieImg {
@@ -14,6 +26,8 @@
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 15px;
+
+  transition: transform 0.3s ease;
 }
 
 .rating {
@@ -34,4 +48,53 @@
 
 .movieTitle {
   color: var(--text);
+}
+
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+
+  z-index: 3;
+
+  &:hover {
+    color: #FFD700;
+  }
+}
+
+.favoriteActive {
+  color: #FFD700;
+}
+
+.movieCard:hover .favoriteBtn {
+  opacity: 1;
+  transform: translateY(0);
 }

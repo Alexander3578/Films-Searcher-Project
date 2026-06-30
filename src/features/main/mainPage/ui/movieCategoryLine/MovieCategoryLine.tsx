@@ -39,9 +39,7 @@ export const MovieCategoryLine = ({title, movies, category}: Props) => {
             <div>
                 <FlexWrapper gap={'20px'}>
                     {movies.slice(0, 6).map(movie => <MovieCard key={movie.id}
-                                                                imgSrc={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                                                                title={movie.title}
-                                                                rating={movie.vote_average}/>)}
+                                                                movie={movie}/>)}
                 </FlexWrapper>
             </div>
         </div>

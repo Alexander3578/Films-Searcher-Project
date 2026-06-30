@@ -28,6 +28,7 @@ export const Layout = () => {
             )
         }
     }, [location.pathname, location.search])
+
     return (
         <>
             <Header/>

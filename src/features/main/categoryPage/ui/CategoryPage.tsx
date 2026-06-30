@@ -34,7 +34,6 @@ export const CategoryPage = () => {
 
     const category = type as MovieCategory | undefined;
 
-
     const [searchParams, setSearchParams] = useSearchParams();
 
     const page = Number(searchParams.get('page') ?? 1);
@@ -100,13 +99,7 @@ export const CategoryPage = () => {
                     {movies?.results?.map(movie => (
                         <MovieCard
                             key={movie.id}
-                            imgSrc={
-                                movie.backdrop_path
-                                    ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-                                    : ''
-                            }
-                            title={movie.title}
-                            rating={movie.vote_average}
+                            movie={movie}
                         />
                     ))}
                 </FlexWrapper>
