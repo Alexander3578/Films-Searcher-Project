@@ -32,10 +32,14 @@ export const SearchPage = () => {
                 The Search Result
             </Typography>
             <SearchMovieBlock/>
-            {searchMovieResult?.results?.map(movie =>
+            {searchMovieResult ? searchMovieResult.results?.map(movie =>
                 <MovieCard key={movie.id}
                            movie={movie}/>
-            )}
+            ) : <Typography className={styles.searchCaption}
+                            as={'p'}
+                            variant={'h2'} >
+                Enter a movie title to start searching.
+            </Typography>}
         </Container>
     );
 };

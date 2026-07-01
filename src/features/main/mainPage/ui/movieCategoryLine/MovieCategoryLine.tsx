@@ -37,7 +37,7 @@ export const MovieCategoryLine = ({title, movies, category}: Props) => {
                 </Button>
             </FlexWrapper>
             <div>
-                <FlexWrapper gap={'20px'}>
+                <FlexWrapper gap={'24px'}>
                     {movies.slice(0, 6).map(movie => <MovieCard key={movie.id}
                                                                 movie={movie}/>)}
                 </FlexWrapper>

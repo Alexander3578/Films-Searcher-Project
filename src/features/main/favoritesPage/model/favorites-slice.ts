@@ -5,17 +5,21 @@ import {RootState} from '@/app/store';
 type MovieState = {
     favorites: MovieResults[]
 }
-
-const getInitialFavorites = (): MovieState => {
+const loadFavorites = (): MovieState => {
     try {
         const data = localStorage.getItem('favorites')
-        return data ? JSON.parse(data) : { favorites: [] }
+
+        const parsed = data ? JSON.parse(data) : []
+
+        return {
+            favorites: Array.isArray(parsed) ? parsed : []
+        }
     } catch {
         return { favorites: [] }
     }
 }
 
-const initialFavorites: MovieState = getInitialFavorites()
+const initialFavorites: MovieState = loadFavorites()
 
 
 export const favoritesSlice = createAppSlice({
@@ -46,4 +50,4 @@ export const {selectFavorites} = favoritesSlice.selectors
 
 export const selectIsFavorite =
     (movieId: number) => (state: RootState) =>
-        state.favorites.favorites?.some(movie => movie.id === movieId);
+        state.favorites?.favorites?.some(movie => movie.id === movieId) ?? false;

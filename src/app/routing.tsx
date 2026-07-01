@@ -5,15 +5,17 @@ import {MainPage} from '../features/main/mainPage/ui/MainPage';
 import {SearchPage} from '../features/main/searchPage/ui/SearchPage';
 import {CategoryPage} from '../features/main/categoryPage/ui/CategoryPage';
 import {MOVIE_CATEGORY} from '../common/constants';
+import {FavoritesPage} from '../features/main/favoritesPage/ui/FavoritesPage';
+import {FilterPage} from '../features/main/filterPage/ui/FilterPage';
 
 
 const publicRoutes: RouteObject[] = [
     {
-        element: <MainPage />,
+        element: <MainPage/>,
         path: '/main',
     },
     {
-        element: <CategoryPage />,
+        element: <CategoryPage/>,
         path: '/category/:type',
     },
     {
@@ -24,15 +26,15 @@ const publicRoutes: RouteObject[] = [
         }
     },
     {
-        element: <div>Filtered Movies</div>,
+        element: <FilterPage/>,
         path: '/filter',
     },
     {
-        element: <SearchPage />,
+        element: <SearchPage/>,
         path: '/search',
     },
     {
-        element: <div>Favorites</div>,
+        element: <FavoritesPage/>,
         path: '/favorites',
     },
 ]
@@ -41,7 +43,7 @@ function PublicRoutes() {
     // const isSuccess  = true
 
     // return isSuccess ? <Navigate to={'/'} /> : <Outlet />
-    return <Outlet />
+    return <Outlet/>
 }
 
 export const router = createBrowserRouter([
@@ -49,18 +51,18 @@ export const router = createBrowserRouter([
         children: [
             {
                 children: publicRoutes,
-                element: <PublicRoutes />,
+                element: <PublicRoutes/>,
             },
         ],
-        element: <Layout />,
+        element: <Layout/>,
         path: '/',
     },
     {
-        element: <Error404 />,
+        element: <Error404/>,
         path: '*',
     },
 ], {basename: '/'})
 
 export const Router = () => {
-    return <RouterProvider router={router} />
+    return <RouterProvider router={router}/>
 }
