@@ -100,6 +100,8 @@ export const CategoryPage = () => {
                         <MovieCard
                             key={movie.id}
                             movie={movie}
+                            maxWidth={250}
+                            height={370}
                         />
                     ))}
                 </FlexWrapper>

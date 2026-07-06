@@ -7,9 +7,11 @@ import {useFavoriteMovie} from '@/common/hooks';
 
 type Props = {
     movie: MovieResults
+    maxWidth?: number
+    height?: number
 }
 
-export const MovieCard = ({movie}: Props) => {
+export const MovieCard = ({movie, maxWidth = 210, height = 330}: Props) => {
 
     const {toggle, isFavorite} = useFavoriteMovie(movie)
 
@@ -32,11 +34,14 @@ export const MovieCard = ({movie}: Props) => {
                 };
 
     return (
-        <div className={styles.movieCard}>
+        <div className={styles.movieCard}
+             style={{maxWidth}}>
             <div className={styles.movieImg}
-                 style={hasImage ? {
-                     backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
-                 } : {background: `#3d3c3c`}}>
+                 style={{
+                     height, ...hasImage ? {
+                         backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
+                     } : {background: `#3d3c3c`}
+                 }}>
                 <div className={styles.overlay}/>
 
                 <button

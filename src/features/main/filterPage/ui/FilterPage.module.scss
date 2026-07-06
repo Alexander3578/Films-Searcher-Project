@@ -1,0 +1,21 @@
+.filterPage {
+  margin-top: 40px;
+}
+
+.filterAsideBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 330px;
+  width: 100%;
+  height: fit-content;
+  background-color: var(--headerBg);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--footerBorder);
+}
+
+.filterSelect {
+  display: inline-block;
+  width: 100%;
+}

@@ -24,7 +24,7 @@ export const MovieCategoryLine = ({title, movies, category}: Props) => {
     }
 
     return (
-        <div>
+        <div className={styles.movieLine}>
             <FlexWrapper justify={'space-between'} align={'center'} className={styles.titleViewAllLine}>
                 <Typography className={styles.categoryTitle}
                             variant={'h1'}>
