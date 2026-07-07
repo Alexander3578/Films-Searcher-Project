@@ -11,10 +11,10 @@
 
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-regular);
-  color: var(--color-light-100);
+  color: var(--text);
 
-  background-color: var(--color-dark-900);
-  border: 1px solid var(--color-dark-300);
+  background-color: var(--bg);
+  border: 1px solid var(--color-dark-100);
   border-radius: 2px;
 
   &:disabled {
@@ -23,7 +23,7 @@
 }
 
 .selectTrigger:hover {
-  background-color: var(--color-dark-500);
+  background-color: var(--headerBg);
 }
 
 .selectTrigger:focus-visible {
@@ -35,7 +35,7 @@
 }
 
 .selectIcon {
-  color: var(--color-light-100);
+  color: var(--text);
 }
 
 .selectContent {
@@ -44,7 +44,7 @@
   width: var(--radix-select-trigger-width);
   max-height: var(--radix-select-content-available-height);
 
-  background-color: var(--color-dark-900);
+  background-color: var(--bg);
   border: 1px solid var(--color-dark-100);
   border-radius: 2px;
 }
@@ -72,7 +72,7 @@
 
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-regular);
-  color: var(--color-light-100);
+  color: var(--text);
 
   border-radius: 3px;
 }

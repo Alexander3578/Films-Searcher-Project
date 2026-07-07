@@ -15,6 +15,14 @@
   border: 1px solid var(--footerBorder);
 }
 
+.filterAsideTitle {
+  color: var(--text);
+}
+
+.filterAsideText {
+  color: var(--headerText);
+}
+
 .filterSelect {
   display: inline-block;
   width: 100%;

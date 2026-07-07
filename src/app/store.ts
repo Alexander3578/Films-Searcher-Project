@@ -4,6 +4,7 @@ import {movieReducer, movieSlice} from '../features/main/mainPage/model/movie-sl
 import {searchReducer, searchSlice} from '../features/main/searchPage/model/search-slice';
 import {favoritesReducer, favoritesSlice} from '../features/main/favoritesPage/model/favorites-slice';
 import {filterReducer, filterSlice} from '../features/main/filterPage/model/filter-slice';
+import {FAVORITES_STORAGE_KEY, FILTER_STORAGE_KEY} from '../common/constants';
 
 export const store = configureStore({
     reducer: {
@@ -27,7 +28,13 @@ window.store = store
 
 store.subscribe(() => {
     localStorage.setItem(
-        'favorites',
+        FAVORITES_STORAGE_KEY,
         JSON.stringify(store.getState().favorites.favorites)
     )
+
+    localStorage.setItem(
+        FILTER_STORAGE_KEY,
+        JSON.stringify(store.getState().filter.filters)
+    )
 })
+

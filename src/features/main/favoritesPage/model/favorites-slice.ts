@@ -1,13 +1,14 @@
 import {createAppSlice} from '@/common/utils/createAppSlice';
 import {MovieResults} from '@/features/main/mainPage/api/movieApi.types';
 import {RootState} from '@/app/store';
+import {FAVORITES_STORAGE_KEY} from '@/common/constants';
 
 type MovieState = {
     favorites: MovieResults[]
 }
 const loadFavorites = (): MovieState => {
     try {
-        const data = localStorage.getItem('favorites')
+        const data = localStorage.getItem(FAVORITES_STORAGE_KEY)
 
         const parsed = data ? JSON.parse(data) : []
 
