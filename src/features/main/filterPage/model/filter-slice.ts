@@ -4,24 +4,26 @@ import {FilterState, GetAllMovieParams, MovieState, SortBy} from '../api/filterA
 import {setAppStatusAC} from '@/app/app-slice';
 import {FILTER_STORAGE_KEY} from '@/common/constants';
 
+const resetFilterState: FilterState = {
+    sortBy: 'popularity.desc' as SortBy,
+    minRating: 0,
+    maxRating: 10,
+    genres: []
+}
+
 const loadFilters = (): FilterState => {
     try {
         const data = localStorage.getItem(FILTER_STORAGE_KEY)
 
-        return data
-            ? JSON.parse(data)
-            : {
-                sortBy: 'popularity.desc',
-                minRating: 0,
-                maxRating: 10,
-            }
+        if (!data) return resetFilterState
+
+        return {
+            ...resetFilterState,
+            ...JSON.parse(data),
+        }
 
     } catch {
-        return {
-            sortBy: 'popularity.desc',
-            minRating: 0,
-            maxRating: 10,
-        }
+        return resetFilterState
     }
 }
 
@@ -34,17 +36,26 @@ export const filterSlice = createAppSlice({
         filters: initialFiltersState
     } as MovieState,
     reducers: (create) => ({
+        resetFiltersAC: create.reducer((state) => {
+            state.filters = resetFilterState
+        }),
+        toggleGenreAC: create.reducer<{ id: number }>((state, action) => {
+            const index = state.filters.genres.indexOf(action.payload.id)
+
+            if (index === -1) {
+                state.filters.genres.push(action.payload.id)
+            } else {
+                state.filters.genres.splice(index, 1)
+            }
+        }),
         setSortByAC: create.reducer<{ sortBy: SortBy }>(
             (state, action) => {
                 state.filters.sortBy = action.payload.sortBy
             }),
-
-
         setRatingAC: create.reducer<[number, number]>((state, action) => {
             state.filters.minRating = action.payload[0]
             state.filters.maxRating = action.payload[1]
         }),
-
         fetchAllMovieTC: create.asyncThunk(
             async (params: GetAllMovieParams, thunkAPI) => {
                 try {
@@ -74,7 +85,7 @@ export const filterSlice = createAppSlice({
     }
 })
 
-export const {fetchAllMovieTC, setRatingAC, setSortByAC} = filterSlice.actions
+export const {fetchAllMovieTC, setRatingAC, setSortByAC, resetFiltersAC, toggleGenreAC} = filterSlice.actions
 export const filterReducer = filterSlice.reducer
 
 export const {selectAllMovie, selectFilters} = filterSlice.selectors

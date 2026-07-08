@@ -12,7 +12,6 @@ export type ButtonProps<T extends ElementType = 'button'> = {
     isFullWidth?: boolean
     isImg?: boolean
     variant?: 'primary' | 'secondary'
-    viewBox?: string
     size?: 'sm' | 'md' | 'lg'
 } & ComponentPropsWithoutRef<T>
 
@@ -26,7 +25,6 @@ export const Button = forwardRef(
             isFullWidth,
             isImg,
             variant = 'primary',
-            viewBox,
             size = 'sm',
             ...rest
         } = props
@@ -42,7 +40,6 @@ export const Button = forwardRef(
               <Icon
                   height={'16px'}
                   iconId={`${buttonImg}`}
-                  viewBox={viewBox || '0 0 16 16'}
                   width={'16px'}
               />
           )}

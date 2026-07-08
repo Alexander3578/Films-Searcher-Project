@@ -23,6 +23,7 @@ export const SearchMovieBlock = () => {
             />
 
             <Button
+                className={styles.searchButton}
                 size={'md'}
                 onClick={onSearchClickHandler}
                 disabled={!Boolean(query.trim())}
