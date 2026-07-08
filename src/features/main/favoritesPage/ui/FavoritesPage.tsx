@@ -20,7 +20,8 @@ export const FavoritesPage = () => {
                 </Typography>
                 <FlexWrapper wrap={'wrap'} gap={'24px'}>
                     {favoritesMovie.length ?
-                        favoritesMovie.map(movie => <MovieCard movie={movie}/>) :
+                        favoritesMovie.map(movie => <MovieCard key={movie.id}
+                                                               movie={movie}/>) :
                         <Typography as={'p'}
                                     variant={'h2'}
                                     className={styles.favoritesCaption}>

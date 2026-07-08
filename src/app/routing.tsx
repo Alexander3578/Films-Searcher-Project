@@ -7,12 +7,17 @@ import {CategoryPage} from '../features/main/categoryPage/ui/CategoryPage';
 import {MOVIE_CATEGORY} from '../common/constants';
 import {FavoritesPage} from '../features/main/favoritesPage/ui/FavoritesPage';
 import {FilterPage} from '../features/main/filterPage/ui/FilterPage';
+import {MoviePage} from '../features/main/moviePage/ui/MoviePage';
 
 
 const publicRoutes: RouteObject[] = [
     {
         element: <MainPage/>,
         path: '/main',
+    },
+    {
+        element: <MoviePage/>,
+        path: '/movie/:id',
     },
     {
         element: <CategoryPage/>,
