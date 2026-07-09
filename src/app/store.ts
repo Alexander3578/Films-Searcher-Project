@@ -5,6 +5,7 @@ import {searchReducer, searchSlice} from '../features/main/searchPage/model/sear
 import {favoritesReducer, favoritesSlice} from '../features/main/favoritesPage/model/favorites-slice';
 import {filterReducer, filterSlice} from '../features/main/filterPage/model/filter-slice';
 import {FAVORITES_STORAGE_KEY, FILTER_STORAGE_KEY} from '../common/constants';
+import {detailsSlice, movieDetailsReducer} from '../features/main/moviePage/model/details-slice';
 
 export const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ export const store = configureStore({
         [movieSlice.name]: movieReducer,
         [searchSlice.name]: searchReducer,
         [favoritesSlice.name]: favoritesReducer,
-        [filterSlice.name]: filterReducer
+        [filterSlice.name]: filterReducer,
+        [detailsSlice.name]: movieDetailsReducer
     },
     devTools: !import.meta.env.PROD,
 })
