@@ -1,5 +1,5 @@
 import {instance} from '@/common/instance/instance';
-import {MovieDetailsParams, MovieDetailsType} from './movieDetailsApi.types';
+import {MovieCreditsType, MovieDetailsParams, MovieDetailsType} from './movieDetailsApi.types';
 import {GetMovieParams, MovieType} from '../../mainPage/api/movieApi.types';
 
 export const movieDetailsApi = {
@@ -10,6 +10,11 @@ export const movieDetailsApi = {
     },
     getSimilarMovies(id: number, params?: GetMovieParams) {
         return instance.get<MovieType>(`/movie/${id}/similar`, {
+            params,
+        })
+    },
+    getMovieCredits(id: number, params?: MovieDetailsParams) {
+        return instance.get<MovieCreditsType>(`/movie/${id}/credits`, {
             params,
         })
     },

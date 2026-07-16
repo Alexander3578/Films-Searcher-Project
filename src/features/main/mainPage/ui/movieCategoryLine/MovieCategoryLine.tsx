@@ -11,7 +11,7 @@ import styles from './MovieCategoryLine.module.scss'
 type Props = {
     title: string
     movies: MovieResults[]
-    category: MovieCategory
+    category?: MovieCategory
 }
 
 
@@ -30,11 +30,11 @@ export const MovieCategoryLine = ({title, movies, category}: Props) => {
                             variant={'h1'}>
                     {title}
                 </Typography>
-                <Button variant={'secondary'}
+                {category && <Button variant={'secondary'}
                         size={'md'}
                         onClick={viewAllMovieHandler}>
                     View more
-                </Button>
+                </Button>}
             </FlexWrapper>
             <div>
                 <FlexWrapper gap={'24px'}>

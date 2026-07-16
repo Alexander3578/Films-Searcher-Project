@@ -1,0 +1,23 @@
+.actorCard {
+  width: 100%;
+}
+
+.actorImg {
+  width: 100%;
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+
+  transition: transform 0.3s ease;
+}
+
+.actorName, .characterName {
+    color: var(--text);
+}
+
+.characterName {
+  opacity: .9;
+}

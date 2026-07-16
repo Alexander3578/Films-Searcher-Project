@@ -1,8 +1,18 @@
-.movieDetails {
-  margin-top: 40px;
+.movieInfoWrapper {
+  margin: 40px 0;
+}
+
+.movieName {
+  color: var(--text);
+  font-size: 40px;
+}
+
+.backBtn {
+  padding: 0 20px;
 }
 
 .moviePosterImg {
+  display: inline-block;
   position: relative;
   max-width: 330px;
   width: 100%;
@@ -10,4 +20,44 @@
   object-fit: cover;
   object-position: center;
   border-radius: 12px;
+}
+
+.movieReleaseRatingTime {
+  margin: 15px 0;
+}
+
+.releaseYear, .movieTime {
+  color: var(--text);
+}
+
+.rating {
+  padding: 10px 10px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.overview {
+  color: var(--text);
+}
+
+.genresBlock {
+  margin-top: 15px;
+}
+
+.genresTitle {
+  display: inline-block;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.genre {
+  padding: 5px 10px;
+  background: rgba(150, 150, 150, 0.5);
+  border-radius: 20px;
 }

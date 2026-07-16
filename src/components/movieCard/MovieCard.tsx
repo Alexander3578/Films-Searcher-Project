@@ -62,7 +62,7 @@ export const MovieCard = ({movie, maxWidth = 210, height = 330}: Props) => {
                         {isFavorite ? '❤️' : '🤍'}
                     </button>
                     <div className={styles.rating} style={ratingStyle}>
-                        {movie.vote_average?.toFixed() ?? '-'}
+                        {movie.vote_average?.toFixed(1) ?? '-'}
                     </div>
                 </div>
                 <Typography variant={'h3'} className={styles.movieTitle}>{movie.title}</Typography>
