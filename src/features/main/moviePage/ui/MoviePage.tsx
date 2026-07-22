@@ -16,7 +16,7 @@ import {Typography} from '@/components/typography';
 import {MovieCategoryLine} from '../../mainPage/ui/movieCategoryLine/MovieCategoryLine';
 import {CastLine} from './castLine/CastLine';
 import {Button} from '@/components/button';
-import {formatRuntime} from '../../../../common/functions/formatTime';
+import {formatRuntime} from '@/common/functions/formatTime';
 
 export const MoviePage = () => {
 

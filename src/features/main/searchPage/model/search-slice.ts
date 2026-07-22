@@ -3,6 +3,8 @@ import {setAppStatusAC} from '@/app/app-slice';
 import {GetSearchMovieParams} from '../api/searchApi.types';
 import {MovieType} from '../../mainPage/api/movieApi.types';
 import {searchApi} from '../api/searchApi';
+import {handleServerNetworkError} from '../../../../common/utils';
+import {movieSchema} from '../../mainPage/model/schemas/mainSchemas';
 
 type SearchState = {
     search: MovieType | null
@@ -20,12 +22,15 @@ export const searchSlice = createAppSlice({
 
                     const res = await searchApi.getSearchMovie(params)
 
+                    movieSchema.parse(res.data)
+
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
                     return {search: res.data}
                 } catch (err) {
+                    handleServerNetworkError(err, thunkAPI.dispatch)
+
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
-                    console.log(err)
                     return thunkAPI.rejectWithValue(err)
                 }
             },

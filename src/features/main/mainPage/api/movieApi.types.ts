@@ -1,42 +1,14 @@
+import * as z from 'zod'
+import {movieResultSchema, movieSchema, movieTypeWithDatesSchema} from '../model/schemas/mainSchemas';
+
 export type GetMovieParams = {
     page?: number
     language?: string
 }
 
-export type MovieType = {
-    page: number;
-    results: MovieResults[];
-    total_pages: number;
-    total_results: number;
-}
+export type MovieType = z.infer<typeof movieSchema>
 
-export type MovieTypeWithDates = {
-	dates: Dates;
-    page: number;
-    results: MovieResults[];
-    total_pages: number;
-    total_results: number;
-}
+export type MovieTypeWithDates = z.infer<typeof movieTypeWithDatesSchema>
 
-type Dates = {
-    maximum: Date,
-    minimum: Date
-}
-
-export type MovieResults = {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-}
+export type MovieResults = z.infer<typeof movieResultSchema>
 

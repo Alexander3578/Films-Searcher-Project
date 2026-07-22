@@ -27,7 +27,12 @@ const publicRoutes: RouteObject[] = [
         path: '/category',
         loader: () => {
             const saved = localStorage.getItem(MOVIE_CATEGORY);
-            return redirect(`/category/${saved ?? 'popular'}`);
+
+            if (!saved) {
+                return redirect('/category/popular');
+            }
+
+            return redirect(`/category/${saved}`);
         }
     },
     {

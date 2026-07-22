@@ -3,6 +3,9 @@ import {setAppStatusAC} from '@/app/app-slice';
 import {MovieCreditsType, MovieDetailsParams, MovieDetailsType} from '../api/movieDetailsApi.types';
 import {GetMovieParams, MovieType} from '../../mainPage/api/movieApi.types';
 import {movieDetailsApi} from '../api/movieDetailsApi';
+import {movieSchema} from '../../mainPage/model/schemas/mainSchemas';
+import {handleServerNetworkError} from '../../../../common/utils';
+import {movieCreditsSchema, movieDetailsSchema} from './schemas/detailsSchemas';
 
 type DetailsState = {
     movieDetails: MovieDetailsType | null
@@ -26,10 +29,13 @@ export const detailsSlice = createAppSlice({
                     const res =
                         await movieDetailsApi.getMovieDetails(params.id, params.params)
 
+                    movieDetailsSchema.parse(res.data)
+
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
                     return {movieDetails: res.data}
                 } catch (err) {
+                    handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
 
                     return thunkAPI.rejectWithValue(err)
@@ -49,10 +55,13 @@ export const detailsSlice = createAppSlice({
                     const res =
                         await movieDetailsApi.getSimilarMovies(params.id, params.params)
 
+                    movieSchema.parse(res.data)
+
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
                     return {similarMovies: res.data}
                 } catch (err) {
+                    handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
 
                     return thunkAPI.rejectWithValue(err)
@@ -72,10 +81,13 @@ export const detailsSlice = createAppSlice({
                     const res =
                         await movieDetailsApi.getMovieCredits(params.id, params.params)
 
+                    movieCreditsSchema.parse(res.data)
+
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
                     return {movieCredits: res.data}
                 } catch (err) {
+                    handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
 
                     return thunkAPI.rejectWithValue(err)
