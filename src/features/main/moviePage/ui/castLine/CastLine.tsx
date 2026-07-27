@@ -20,8 +20,13 @@ export const CastLine = ({credits}: Props) => {
             </Typography>
             <div>
                 <FlexWrapper gap={'24px'}>
-                    {credits.slice(0, 6).map(credit => <ActorCard key={credit.id}
-                                                                  cast={credit} />)}
+                    {credits.length ? credits.slice(0, 6).map(credit => <ActorCard key={credit.id}
+                                                                  cast={credit} />) :
+                        <Typography className={styles.noInformation}
+                                    as={'p'}
+                                    variant={'h2'}>
+                            No cast information available.
+                        </Typography>}
                 </FlexWrapper>
             </div>
         </div>

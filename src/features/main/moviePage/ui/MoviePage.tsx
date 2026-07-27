@@ -64,7 +64,9 @@ export const MoviePage = () => {
             <Container>
                 <div className={styles.movieInfoWrapper}>
                     <FlexWrapper gap={'40px'}>
-                        <img src={`https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`}
+                        <img src={movieDetails.backdrop_path ?
+                            `https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}` :
+                        `https://placehold.co/330x450?text=Poster`}
                              alt={'movie poster'}
                              className={styles.moviePosterImg}/>
                         <div className={styles.movieDetailsWrapper}>
@@ -110,7 +112,8 @@ export const MoviePage = () => {
                                         </span>)}
                                 </FlexWrapper>
                             </div>
-                            {movieDetails.genres.map((genre) => <Typography>{genre.name}</Typography>)}
+                            {movieDetails.genres.map((genre) =>
+                                <Typography key={genre.id}>{genre.name}</Typography>)}
                         </div>
                     </FlexWrapper>
                 </div>

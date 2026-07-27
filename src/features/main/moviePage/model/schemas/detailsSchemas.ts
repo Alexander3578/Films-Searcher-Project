@@ -14,7 +14,7 @@ export const genresSchema = z.object({
 
 export const companiesSchema= z.object({
     id: z.number(),
-    logo_path: z.string(),
+    logo_path: z.string().nullable(),
     name: z.string(),
     origin_country: z.string()
 })
@@ -33,18 +33,18 @@ export const languageSchema = z.object({
 export const movieDetailsSchema = z.object({
         adult: z.boolean(),
         backdrop_path: z.string().nullable(),
-        belongs_to_collection: collectionBelongsSchema,
+        belongs_to_collection: collectionBelongsSchema.nullable(),
         budget: z.number(),
         genres: genresSchema.array(),
         homepage: z.string(),
         id: z.number(),
-        imdb_id: z.string(),
+        imdb_id: z.string().nullable(),
         origin_country: z.string().array(),
         original_language: z.string(),
         original_title: z.string(),
         overview: z.string(),
         popularity: z.number(),
-        poster_path: z.string(),
+        poster_path: z.string().nullable(),
         production_companies: companiesSchema.array(),
         production_countries: countriesSchema.array(),
         release_date: z.string(),
@@ -67,7 +67,7 @@ export const castSchema = z.object({
     name: z.string(),
     original_name: z.string(),
     popularity: z.number(),
-    profile_path: z.string(),
+    profile_path: z.string().nullable(),
     cast_id: z.number(),
     character: z.string(),
     credit_id: z.string(),

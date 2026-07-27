@@ -8,6 +8,7 @@ import {MovieCard} from '@/components/movieCard';
 import {Typography} from '@/components/typography';
 import styles from './SearchPage.module.scss'
 import {Container} from '@/components/stylesComponents/container/Container';
+import {FlexWrapper} from '@/components/stylesComponents/flexWrapper/FlexWrapper';
 
 export const SearchPage = () => {
     const [params] = useSearchParams();
@@ -31,15 +32,19 @@ export const SearchPage = () => {
                         className={styles.searchPageTitle}>
                 The Search Result
             </Typography>
-            <SearchMovieBlock/>
-            {searchMovieResult ? searchMovieResult.results?.map(movie =>
-                <MovieCard key={movie.id}
-                           movie={movie}/>
-            ) : <Typography className={styles.searchCaption}
-                            as={'p'}
-                            variant={'h2'} >
-                Enter a movie title to start searching.
-            </Typography>}
+            <SearchMovieBlock />
+            <FlexWrapper wrap={'wrap'} gap={'24px'}>
+                {searchMovieResult ? searchMovieResult.results?.map(movie =>
+                    <MovieCard key={movie.id}
+                               movie={movie}
+                               maxWidth={250}
+                               height={370}/>
+                ) : <Typography className={styles.searchCaption}
+                                as={'p'}
+                                variant={'h2'}>
+                    Enter a movie title to start searching.
+                </Typography>}
+            </FlexWrapper>
         </Container>
     );
 };

@@ -4,8 +4,7 @@ import {movieApi} from '../api/movieApi';
 import {setAppStatusAC} from '@/app/app-slice';
 import {MovieCategory} from '@/common/enums/enums';
 import {RootState} from '@/app/store';
-import {movieSchema, movieTypeWithDatesSchema} from './schemas/mainSchemas';
-import {handleServerNetworkError} from '../../../../common/utils';
+import {handleServerNetworkError} from '@/common/utils';
 
 type MovieState = {
     popular: MovieType | null,
@@ -29,11 +28,10 @@ export const movieSlice = createAppSlice({
                     thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await movieApi.getPopularMovieList(params)
-                    movieSchema.parse(res.data)
 
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return {popular: res.data}
+                    return {popular: res}
                 } catch (err) {
                     handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
@@ -53,11 +51,10 @@ export const movieSlice = createAppSlice({
                     thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await movieApi.getTopRatedMovieList(params)
-                    movieSchema.parse(res.data)
 
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return {topRated: res.data}
+                    return {topRated: res}
                 } catch (err) {
                     handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
@@ -77,11 +74,10 @@ export const movieSlice = createAppSlice({
                     thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await movieApi.getNowPlayingMovieList(params)
-                    movieTypeWithDatesSchema.parse(res.data)
 
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return {nowPlaying: res.data}
+                    return {nowPlaying: res}
                 } catch (err) {
                     handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
@@ -101,11 +97,10 @@ export const movieSlice = createAppSlice({
                     thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await movieApi.getUpcomingMovieList(params)
-                    movieTypeWithDatesSchema.parse(res.data)
 
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return {upcoming: res.data}
+                    return {upcoming: res}
                 } catch (err) {
                     handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))

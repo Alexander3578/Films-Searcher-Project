@@ -3,8 +3,7 @@ import {filterApi} from '../api/filterApi';
 import {FilterState, GetAllMovieParams, MovieState, SortBy} from '../api/filterApi.types';
 import {setAppStatusAC} from '@/app/app-slice';
 import {FILTER_STORAGE_KEY} from '@/common/constants';
-import {movieSchema} from '../../mainPage/model/schemas/mainSchemas';
-import {handleServerNetworkError} from '../../../../common/utils';
+import {handleServerNetworkError} from '@/common/utils';
 
 const resetFilterState: FilterState = {
     sortBy: 'popularity.desc' as SortBy,
@@ -64,11 +63,10 @@ export const filterSlice = createAppSlice({
                     thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
 
                     const res = await filterApi.getAllMovieList(params)
-                    movieSchema.parse(res.data)
 
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return {movie: res.data}
+                    return {movie: res}
                 } catch (err) {
                     handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))

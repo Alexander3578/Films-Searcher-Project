@@ -14,7 +14,7 @@ export const SearchMovieBlock = () => {
     };
 
     return (
-        <FlexWrapper gap={'10px'}>
+        <FlexWrapper gap={'10px'} className={styles.block}>
             <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}

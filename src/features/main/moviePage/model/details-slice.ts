@@ -3,9 +3,7 @@ import {setAppStatusAC} from '@/app/app-slice';
 import {MovieCreditsType, MovieDetailsParams, MovieDetailsType} from '../api/movieDetailsApi.types';
 import {GetMovieParams, MovieType} from '../../mainPage/api/movieApi.types';
 import {movieDetailsApi} from '../api/movieDetailsApi';
-import {movieSchema} from '../../mainPage/model/schemas/mainSchemas';
-import {handleServerNetworkError} from '../../../../common/utils';
-import {movieCreditsSchema, movieDetailsSchema} from './schemas/detailsSchemas';
+import {handleServerNetworkError} from '@/common/utils';
 
 type DetailsState = {
     movieDetails: MovieDetailsType | null
@@ -29,11 +27,9 @@ export const detailsSlice = createAppSlice({
                     const res =
                         await movieDetailsApi.getMovieDetails(params.id, params.params)
 
-                    movieDetailsSchema.parse(res.data)
-
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return {movieDetails: res.data}
+                    return {movieDetails: res}
                 } catch (err) {
                     handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
@@ -55,11 +51,9 @@ export const detailsSlice = createAppSlice({
                     const res =
                         await movieDetailsApi.getSimilarMovies(params.id, params.params)
 
-                    movieSchema.parse(res.data)
-
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return {similarMovies: res.data}
+                    return {similarMovies: res}
                 } catch (err) {
                     handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))
@@ -81,11 +75,9 @@ export const detailsSlice = createAppSlice({
                     const res =
                         await movieDetailsApi.getMovieCredits(params.id, params.params)
 
-                    movieCreditsSchema.parse(res.data)
-
                     thunkAPI.dispatch(setAppStatusAC({status: 'succeeded'}))
 
-                    return {movieCredits: res.data}
+                    return {movieCredits: res}
                 } catch (err) {
                     handleServerNetworkError(err, thunkAPI.dispatch)
                     thunkAPI.dispatch(setAppStatusAC({status: 'failed'}))

@@ -31,15 +31,20 @@ export const MovieCategoryLine = ({title, movies, category}: Props) => {
                     {title}
                 </Typography>
                 {category && <Button variant={'secondary'}
-                        size={'md'}
-                        onClick={viewAllMovieHandler}>
+                                     size={'md'}
+                                     onClick={viewAllMovieHandler}>
                     View more
                 </Button>}
             </FlexWrapper>
             <div>
                 <FlexWrapper gap={'24px'}>
-                    {movies.slice(0, 6).map(movie => <MovieCard key={movie.id}
-                                                                movie={movie}/>)}
+                    {movies.length ? movies.slice(0, 6).map(movie => <MovieCard key={movie.id}
+                                                                                movie={movie}/>) :
+                        <Typography className={styles.noInformation}
+                                    as={'p'}
+                                    variant={'h2'}>
+                            No movies information available.
+                        </Typography>}
                 </FlexWrapper>
             </div>
         </div>
