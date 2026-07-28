@@ -1,4 +1,4 @@
-import {createAppSlice} from '../common/utils/createAppSlice';
+import {createAppSlice} from '../common/utils';
 import {RequestStatus} from '../common/types';
 import {THEME_MODE} from '../common/constants';
 

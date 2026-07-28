@@ -20,6 +20,7 @@ import {MOVIE_CATEGORY} from '@/common/constants';
 import {v4} from 'uuid';
 import clsx from 'clsx';
 import {Pagination} from '@/components/pagination';
+import {CategoryPageSkeleton} from './CategoryPageSkeleton';
 
 const categories = [
     { id: v4(), label: 'Popular Movies', value: MovieCategory.POPULAR },
@@ -70,7 +71,11 @@ export const CategoryPage = () => {
         setSearchParams({ page: String(newPage) });
     }
 
-    return  category && movies ? (
+    if (!category || !movies) {
+        return <CategoryPageSkeleton/>
+    }
+
+    return  (
         <section className={styles.categorySection}>
             <FlexWrapper justify={'center'}
                          gap={'30px'}
@@ -110,5 +115,5 @@ export const CategoryPage = () => {
                         onChange={onChangePageHandler}
                         page={page} />
         </section>
-    ) : <div>Loading...</div>;
+    )
 };

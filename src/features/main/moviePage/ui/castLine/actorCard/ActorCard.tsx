@@ -21,7 +21,10 @@ export const ActorCard = ({cast, maxWidth = 220, height = 220}: Props) => {
                      : `https://avatars.mds.yandex.net/i?id=6358a7315532f9c8f103c83d2a9a77c81b7a7c02-12593547-images-thumbs&n=13`}
                  style={{height}}
                  alt={`${cast.name} actor image`}/>
-            <FlexWrapper direction={'column'} gap={'10px'} align={'center'}>
+            <FlexWrapper direction={'column'}
+                         gap={'10px'}
+                         align={'center'}
+                         className={styles.info}>
                 <Typography variant={'h3'}
                             className={styles.actorName}>{cast.name ? cast.name : 'Actor name'}</Typography>
                 <Typography variant={'body1'}

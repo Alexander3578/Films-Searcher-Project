@@ -1,5 +1,10 @@
 .actorCard {
   width: 100%;
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .actorImg {
@@ -14,10 +19,16 @@
   transition: transform 0.3s ease;
 }
 
+.info {
+  flex: 1;
+}
+
 .actorName, .characterName {
-    color: var(--text);
+  color: var(--text);
 }
 
 .characterName {
+  display: inline-block;
   opacity: .9;
+  margin-top: auto;
 }

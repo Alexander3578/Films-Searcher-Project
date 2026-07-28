@@ -9,6 +9,8 @@ import {Typography} from '@/components/typography';
 import styles from './SearchPage.module.scss'
 import {Container} from '@/components/stylesComponents/container/Container';
 import {FlexWrapper} from '@/components/stylesComponents/flexWrapper/FlexWrapper';
+import {MovieCardSkeleton} from '@/components/movieCard';
+import {selectStatus} from '@/app/app-slice';
 
 export const SearchPage = () => {
     const [params] = useSearchParams();
@@ -16,6 +18,7 @@ export const SearchPage = () => {
 
     const dispatch = useAppDispatch();
     const searchMovieResult = useAppSelector(searchMovieSelector);
+    const status = useAppSelector(selectStatus);
 
     useEffect(() => {
         if (query.trim()) {
@@ -33,17 +36,33 @@ export const SearchPage = () => {
                 The Search Result
             </Typography>
             <SearchMovieBlock />
-            <FlexWrapper wrap={'wrap'} gap={'24px'}>
-                {searchMovieResult ? searchMovieResult.results?.map(movie =>
-                    <MovieCard key={movie.id}
-                               movie={movie}
-                               maxWidth={250}
-                               height={370}/>
-                ) : <Typography className={styles.searchCaption}
-                                as={'p'}
-                                variant={'h2'}>
-                    Enter a movie title to start searching.
-                </Typography>}
+            <FlexWrapper wrap="wrap" gap="24px">
+                {status === 'loading' ? (
+                    Array.from({ length: 10 }).map((_, index) => (
+                        <MovieCardSkeleton
+                            key={index}
+                            maxWidth={250}
+                            height={370}
+                        />
+                    ))
+                ) : searchMovieResult ? (
+                    searchMovieResult.results.map(movie => (
+                        <MovieCard
+                            key={movie.id}
+                            movie={movie}
+                            maxWidth={250}
+                            height={370}
+                        />
+                    ))
+                ) : (
+                    <Typography
+                        className={styles.searchCaption}
+                        as="p"
+                        variant="h2"
+                    >
+                        Enter a movie title to start searching.
+                    </Typography>
+                )}
             </FlexWrapper>
         </Container>
     );

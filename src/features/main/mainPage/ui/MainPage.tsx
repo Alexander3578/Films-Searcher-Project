@@ -10,9 +10,10 @@ import {MovieResults} from '../api/movieApi.types';
 import {SearchMainBlock} from './searchMainBlock/SearchMainBlock';
 import styles from './MainPage.module.scss'
 import {MovieCategoryLine} from './movieCategoryLine/MovieCategoryLine';
-import {MovieCategory} from '../../../../common/enums/enums';
+import {MovieCategory} from '@/common/enums/enums';
 import {FlexWrapper} from '@/components/stylesComponents/flexWrapper/FlexWrapper';
 import {Container} from '@/components/stylesComponents/container/Container';
+import {MainPageSkeleton} from './MainPageSkeleton';
 
 export const MainPage = () => {
 
@@ -76,6 +77,6 @@ export const MainPage = () => {
                 </FlexWrapper>
             </Container>
         </section>
-    ) : <div>Loading...</div>
+    ) : <MainPageSkeleton />
 };
 

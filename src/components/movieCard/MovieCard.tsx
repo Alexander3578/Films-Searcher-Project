@@ -16,7 +16,7 @@ export const MovieCard = ({movie, maxWidth = 210, height = 330}: Props) => {
 
     const {toggle, isFavorite} = useFavoriteMovie(movie)
 
-    const hasImage = movie.backdrop_path && !movie.backdrop_path.endsWith('null');
+    const hasImage = !!movie.backdrop_path
 
     const addToFavourites = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()

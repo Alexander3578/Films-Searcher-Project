@@ -17,6 +17,7 @@ import {MovieCategoryLine} from '../../mainPage/ui/movieCategoryLine/MovieCatego
 import {CastLine} from './castLine/CastLine';
 import {Button} from '@/components/button';
 import {formatRuntime} from '@/common/functions/formatTime';
+import Skeleton from '@mui/material/Skeleton';
 
 export const MoviePage = () => {
 
@@ -37,7 +38,7 @@ export const MoviePage = () => {
     }, [id])
 
     if (!movieDetails || !similarMovies || !movieCredits)
-        return <div>Loading...</div>
+        return <Skeleton animation="wave" />
 
     const onBackHandler = () => {
         navigate(-1)

@@ -20,6 +20,7 @@ import {Button} from '@/components/button';
 import clsx from 'clsx';
 import {Pagination} from '@/components/pagination';
 import {useSearchParams} from 'react-router';
+import {FilterPageSkeleton} from './FilterPageSkeleton';
 
 const selectValues = [
     {value: 'popularity.asc', label: 'Popularity ↑'},
@@ -165,7 +166,10 @@ export const FilterPage = () => {
         filtersValue.genres,
         page, dispatch])
 
-    return allMovies && filtersValue ? (
+    if (!allMovies)
+        return <FilterPageSkeleton/>
+
+    return (
         <div className={styles.filterPage}>
             <Container>
                 <FlexWrapper gap={'20px'}>
@@ -232,6 +236,6 @@ export const FilterPage = () => {
                 </FlexWrapper>
             </Container>
         </div>
-    ) : <div>Loading...</div>;
+    )
 };
 
