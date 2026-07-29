@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router';
-import {useAppDispatch} from '@/common/hooks';
+import {useAppDispatch, useAppSelector} from '@/common/hooks';
 import {
     fetchMovieCreditsTC,
     fetchMovieDetailsTC,
-    fetchSimilarMoviesTC, movieCreditsSelector,
+    fetchSimilarMoviesTC,
+    movieCreditsSelector,
     movieDetailsSelector,
     similarMoviesSelector
 } from '../model/details-slice';
-import {useAppSelector} from '@/common/hooks';
 import {Container} from '@/components/stylesComponents/container/Container';
 import styles from './MoviePage.module.scss'
 import {FlexWrapper} from '@/components/stylesComponents/flexWrapper/FlexWrapper';
@@ -17,7 +17,7 @@ import {MovieCategoryLine} from '../../mainPage/ui/movieCategoryLine/MovieCatego
 import {CastLine} from './castLine/CastLine';
 import {Button} from '@/components/button';
 import {formatRuntime} from '@/common/functions/formatTime';
-import Skeleton from '@mui/material/Skeleton';
+import {MoviePageSkeleton} from './MoviePageSkeleton';
 
 export const MoviePage = () => {
 
@@ -38,7 +38,7 @@ export const MoviePage = () => {
     }, [id])
 
     if (!movieDetails || !similarMovies || !movieCredits)
-        return <Skeleton animation="wave" />
+        return <MoviePageSkeleton />
 
     const onBackHandler = () => {
         navigate(-1)

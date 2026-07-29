@@ -1,10 +1,18 @@
 import React from 'react';
-import {FlexWrapper} from '@/components/stylesComponents/flexWrapper/FlexWrapper';
-import {Skeleton} from '@mui/material';
+import { Skeleton } from '@mui/material';
+import { FlexWrapper } from '@/components/stylesComponents/flexWrapper/FlexWrapper';
+import { MovieCardSkeleton } from '@/components/movieCard/MovieCardSkeleton';
 import styles from './MovieCategoryLine.module.scss';
 
+type Props = {
+    titleWidth?: number;
+    withButton?: boolean;
+}
 
-export const MovieCategoryLineSkeleton = () => {
+export const MovieCategoryLineSkeleton = ({
+                                              titleWidth = 250,
+                                              withButton = true,
+                                          }: Props) => {
     return (
         <div className={styles.movieLine}>
             <FlexWrapper
@@ -14,37 +22,27 @@ export const MovieCategoryLineSkeleton = () => {
             >
                 <Skeleton
                     variant="text"
-                    width={250}
+                    width={titleWidth}
                     height={50}
                 />
 
-                <Skeleton
-                    variant="rounded"
-                    width={120}
-                    height={40}
-                />
+                {withButton && (
+                    <Skeleton
+                        variant="rounded"
+                        width={120}
+                        height={40}
+                    />
+                )}
             </FlexWrapper>
 
-
-            <FlexWrapper gap={'24px'}>
-                {Array.from({length: 6}).map((_, index) => (
-                    <div key={index}
-                         style={{width: 210}}>
-
-                        <Skeleton
-                            variant="rounded"
-                            width={210}
-                            height={330}
-                        />
-
-                        <Skeleton
-                            variant="text"
-                            width={180}
-                            height={35}
-                            sx={{marginTop: '10px'}}
-                        />
-
-                    </div>
+            <FlexWrapper
+                gap={'24px'}
+                align={'stretch'}
+            >
+                {Array.from({ length: 6 }).map((_, index) => (
+                    <MovieCardSkeleton
+                        key={index}
+                    />
                 ))}
             </FlexWrapper>
         </div>

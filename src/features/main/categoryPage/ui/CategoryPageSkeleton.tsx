@@ -8,8 +8,7 @@ import styles from './CategoryPage.module.scss';
 
 export const CategoryPageSkeleton = () => {
     return (
-        <section className={styles.categorySection}>
-
+        <>
             {/* Category buttons */}
             <FlexWrapper
                 justify={'center'}
@@ -36,7 +35,10 @@ export const CategoryPageSkeleton = () => {
                     variant="text"
                     width={300}
                     height={60}
-                    sx={{marginBottom: '20px'}}
+                    sx={{
+                        marginTop: '20px',
+                        marginBottom: '20px',
+                    }}
                 />
 
 
@@ -55,30 +57,26 @@ export const CategoryPageSkeleton = () => {
                         ))
                     }
                 </FlexWrapper>
-
+                <FlexWrapper
+                    justify={'center'}
+                    gap={'10px'}
+                    style={{
+                        marginTop: '30px',
+                        marginBottom: '20px',
+                    }}
+                >
+                    {
+                        Array.from({length: 5}).map((_, index) => (
+                            <Skeleton
+                                key={index}
+                                variant="rounded"
+                                width={40}
+                                height={40}
+                            />
+                        ))
+                    }
+                </FlexWrapper>
             </Container>
-
-
-            {/* Pagination */}
-            <FlexWrapper
-                justify={'center'}
-                gap={'10px'}
-                style={{
-                    marginTop: '30px'
-                }}
-            >
-                {
-                    Array.from({length: 5}).map((_, index) => (
-                        <Skeleton
-                            key={index}
-                            variant="rounded"
-                            width={40}
-                            height={40}
-                        />
-                    ))
-                }
-            </FlexWrapper>
-
-        </section>
+        </>
     );
 };
