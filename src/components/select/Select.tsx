@@ -4,7 +4,7 @@ import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { Label } from '@radix-ui/react-label'
 import * as RadixSelect from '@radix-ui/react-select'
 
-import s from './select.module.scss'
+import s from './Select.module.scss'
 import clsx from 'clsx';
 
 export type Option = { disabled?: boolean; label: string; value: string }

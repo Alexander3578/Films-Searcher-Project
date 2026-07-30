@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementType, ReactNode, forwardRef } from 're
 
 import clsx from 'clsx'
 
-import s from './typography.module.scss'
+import s from './Typography.module.scss'
 
 type ColorTheme = 'accent' | 'danger' | 'dark' | 'info' | 'light' | 'success' | 'warning'
 type Variant =

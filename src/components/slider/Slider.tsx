@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import * as Slider from '@radix-ui/react-slider'
 
-import s from './slider.module.scss'
+import s from './Slider.module.scss'
 import {Typography} from '../typography';
 
 type SliderDemoProps = {
