@@ -1,6 +1,5 @@
 import {createBrowserRouter, Outlet, redirect, RouteObject, RouterProvider,} from 'react-router'
 import {Layout} from '../common/layout/Layout';
-import {Error404} from '../common/error/Error404';
 import {MainPage} from '../features/main/mainPage/ui/MainPage';
 import {SearchPage} from '../features/main/searchPage/ui/SearchPage';
 import {CategoryPage} from '../features/main/categoryPage/ui/CategoryPage';
@@ -8,6 +7,7 @@ import {MOVIE_CATEGORY} from '../common/constants';
 import {FavoritesPage} from '../features/main/favoritesPage/ui/FavoritesPage';
 import {FilterPage} from '../features/main/filterPage/ui/FilterPage';
 import {MoviePage} from '../features/main/moviePage/ui/MoviePage';
+import {ErrorPage} from '../components/error/ErrorPage';
 
 
 const publicRoutes: RouteObject[] = [
@@ -68,7 +68,7 @@ export const router = createBrowserRouter([
         path: '/',
     },
     {
-        element: <Error404/>,
+        element: <ErrorPage/>,
         path: '*',
     },
 ], {basename: '/'})

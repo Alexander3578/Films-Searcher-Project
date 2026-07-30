@@ -5,14 +5,14 @@
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "jsx": "react-jsx",
     "strict": true,
-    "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./src/*"]
     },
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "skipLibCheck": true,
     "esModuleInterop": true
   },
   "include": ["src"]
 }
+
 
