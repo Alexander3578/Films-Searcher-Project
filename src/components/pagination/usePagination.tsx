@@ -53,7 +53,7 @@ export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePagina
         }
     }, [siblings, page, count]) as PaginationRange
 
-    const lastPage = paginationRange.at(-1)
+    const lastPage = paginationRange[paginationRange.length - 1]
 
     const isFirstPage = page === 1
     const isLastPage = page === lastPage

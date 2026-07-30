@@ -1,19 +1,31 @@
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'node:path';
-import {createSvgIconsPlugin} from 'vite-plugin-svg-icons';
+import path from 'node:path'
+import {fileURLToPath} from 'node:url'
+import {createSvgIconsPlugin} from 'vite-plugin-svg-icons'
 
-// https://vite.dev/config/
+
+const __dirname = path.dirname(
+    fileURLToPath(import.meta.url)
+)
+
+
 export default defineConfig({
-    plugins: [react(),
+
+    plugins: [
+        react(),
 
         createSvgIconsPlugin({
-            iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+            iconDirs: [
+                path.resolve(__dirname, 'src/assets/icons')
+            ],
             symbolId: 'icon-[name]',
-        }),],
+        }),
+    ],
+
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'src'),
-        },
-    },
+            '@': path.resolve(__dirname, 'src')
+        }
+    }
 })
