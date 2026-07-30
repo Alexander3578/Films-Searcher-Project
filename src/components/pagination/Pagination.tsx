@@ -1,6 +1,6 @@
 import {clsx} from 'clsx'
 
-import s from './pagination.module.scss'
+import s from './Pagination.module.scss'
 import {usePagination} from './usePagination';
 import {Icon} from '../icon';
 
