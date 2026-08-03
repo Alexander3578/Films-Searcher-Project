@@ -58,14 +58,18 @@ function PublicRoutes() {
 
 export const router = createBrowserRouter([
     {
-        children: [
-            {
-                children: publicRoutes,
-                element: <PublicRoutes/>,
-            },
-        ],
         element: <Layout/>,
         path: '/',
+        children: [
+            {
+                index: true,
+                loader: () => redirect('/main'),
+            },
+            {
+                element: <PublicRoutes/>,
+                children: publicRoutes,
+            },
+        ],
     },
     {
         element: <ErrorPage/>,
