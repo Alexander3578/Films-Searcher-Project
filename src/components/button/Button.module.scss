@@ -85,4 +85,9 @@
   align-items: center;
   gap: 10px;
   white-space: nowrap;
+  color: var(--color-light-100);
+
+  svg {
+    color: var(--color-light-100);
+  }
 }

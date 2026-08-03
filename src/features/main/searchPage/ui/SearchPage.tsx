@@ -46,14 +46,20 @@ export const SearchPage = () => {
                         />
                     ))
                 ) : searchMovieResult ? (
-                    searchMovieResult.results.map(movie => (
+                    searchMovieResult.results.length ?  searchMovieResult.results.map(movie => (
                         <MovieCard
                             key={movie.id}
                             movie={movie}
                             maxWidth={250}
                             height={370}
                         />
-                    ))
+                    )) : <Typography
+                        className={styles.searchCaption}
+                        as="p"
+                        variant="h2"
+                    >
+                        No matches found for {query}
+                    </Typography>
                 ) : (
                     <Typography
                         className={styles.searchCaption}

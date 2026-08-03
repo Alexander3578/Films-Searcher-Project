@@ -8,7 +8,7 @@ type InferType<T> = T extends ElementType<infer U> ? U : never
 
 export type ButtonProps<T extends ElementType = 'button'> = {
     as?: T
-    buttonImg?: 'buttonIcon' | 'trash'
+    buttonImg?: 'buttonIcon' | 'trash' | 'search'
     isFullWidth?: boolean
     isImg?: boolean
     variant?: 'primary' | 'secondary'
@@ -38,9 +38,9 @@ export const Button = forwardRef(
         <span className={s.buttonContent}>
           {isImg && (
               <Icon
-                  height={'16px'}
+                  height={'24px'}
                   iconId={`${buttonImg}`}
-                  width={'16px'}
+                  width={'24px'}
               />
           )}
             {children}

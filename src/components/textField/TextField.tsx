@@ -1,7 +1,7 @@
-import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useState } from 'react'
+import {ChangeEvent, ComponentPropsWithoutRef, forwardRef, useState} from 'react'
 
-import { Icon } from '@/components/icon'
-import { Typography } from '@/components/typography'
+import {Icon} from '@/components/icon'
+import {Typography} from '@/components/typography'
 
 import s from './TextField.module.scss'
 
@@ -11,6 +11,7 @@ export type Props = {
     label?: string
     onValueChange?: (value: string) => void
     value?: string
+    onClearBtn?: () => void
 } & ComponentPropsWithoutRef<'input'>
 export const TextField = forwardRef<HTMLInputElement, Props>(
     (
@@ -24,6 +25,7 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
             onValueChange,
             placeholder,
             value,
+            onClearBtn,
         },
         ref
     ) => {
@@ -56,11 +58,6 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
                 {label && !inputSearch && <span className={s.label}>{label}</span>}
                 {/*<div className={s.InputContainer}>*/}
                 <div className={classNames.inputContainer}>
-                    {inputSearch && (
-                        <button className={s.buttonSearch}>
-                            <Icon iconId={'search'} />
-                        </button>
-                    )}
                     <input
                         autoFocus
                         className={classNames.input}
@@ -71,12 +68,18 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
                         type={currentInputType}
                         value={value}
                     />
+                    {value && (
+                        <button className={s.clearButton}
+                                onClick={onClearBtn}>
+                            <Icon height={'24px'} iconId={'close'} width={'24px'}/>
+                        </button>
+                    )}
                     {inputPassword && (
                         <div className={s.buttonEye} onClick={showPasswordHandler}>
                             {showPasword ? (
-                                <Icon height={'20px'} iconId={'eyeOutlineOff'} width={'20px'} />
+                                <Icon height={'20px'} iconId={'eyeOutlineOff'} width={'20px'}/>
                             ) : (
-                                <Icon iconId={'eyeOutline'} />
+                                <Icon iconId={'eyeOutline'}/>
                             )}
                         </div>
                     )}

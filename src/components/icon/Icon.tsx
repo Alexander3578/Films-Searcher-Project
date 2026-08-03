@@ -1,3 +1,5 @@
+import sprite from '../../assets/IconSprite.svg'
+
 interface IconPropsType {
     height?: string
     iconId: string
@@ -11,8 +13,9 @@ export const Icon = ({ height, iconId, className, width }: IconPropsType) => {
             className={className}
             height={height || '24'}
             width={width || '24'}
+            fill={'currentColor'}
         >
-            <use href={`#icon-${iconId}`} />
+            <use href={`${sprite}#${iconId}`} />
         </svg>
     )
 }

@@ -36,14 +36,17 @@ export const searchSlice = createAppSlice({
                     state.search = action.payload.search
                 }
             },
-        )
+        ),
+        clearSearchResultAC: create.reducer((state) => {
+            state.search = null
+        })
     }),
     selectors: {
         searchMovieSelector: (state) => state.search
     }
 })
 
-export const {getSearchMovieTC} = searchSlice.actions
+export const {getSearchMovieTC, clearSearchResultAC} = searchSlice.actions
 
 export const searchReducer = searchSlice.reducer
 

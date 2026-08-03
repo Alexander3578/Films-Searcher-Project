@@ -27,7 +27,7 @@ export const Header = () => {
         <header className={styles.header}>
             <Container>
                 <FlexWrapper gap={'20px'} justify={'space-between'} align={'center'}>
-                    <Link to={'/'}>
+                    <Link to={'/main'}>
                         <img src={logo} alt={'logo'} className={styles.logo}/>
                     </Link>
                     <Menu/>
